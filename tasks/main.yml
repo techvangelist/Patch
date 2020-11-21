@@ -1,0 +1,12 @@
+---
+- name: Patch System
+  yum:
+    name: vim
+    state: latest
+  register: patch_result
+
+- name: Set system to reboot if needed
+  set_fact:
+    need_reboot: "{{ 'yes' if (patch_result is changed and patch_result is not failed) else 'no' }}"
+    patched: "{{ 'yes' if (patch_result is changed and patch_result is not failed) else 'no' }}"
+
