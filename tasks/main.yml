@@ -1,7 +1,7 @@
 ---
 - name: Patch System
   yum:
-    name: vim
+    name: '*'
     state: latest
   register: patch_result
 
